@@ -17,8 +17,8 @@ import java.util.Set;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(UserNameExistsException.class)
-    public ResponseEntity<ErrorResult> handle(UserNameExistsException ex){
+    @ExceptionHandler({UserNameExistsException.class, UserNameOrPasswordExistsException.class})
+    public ResponseEntity<ErrorResult> handle(Exception ex){
         final ErrorResult errorResult = new ErrorResult(ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResult);
     }
